@@ -1,8 +1,7 @@
 var h = 100;
 var w = 400;
-var ds;
 
-function buildLine() {
+function buildLine(ds) {
     var lineFun = d3.svg.line()
         .x(function (d) {
             return (d.month - 20130001) / 3.25;
@@ -27,18 +26,21 @@ function buildLine() {
         });
 }
 
-function showHeader() {
+function showHeader(ds) {
     d3.select('body').append('h1')
         .text(ds.category + " Sales(2013)");
 }
 
-d3.json('MonthlySalesbyCategory.json', function (error, data) {
+d3.json('MonthlySalesbyCategoryMultiple.json', function (error, data) {
     if (error) {
         console.log(error);
     } else {
         console.log(data);
-        ds = data;
     }
-    showHeader();
-    buildLine();
+
+    data.contents.forEach(function (d) {
+        console.log(d)
+        showHeader(d);
+        buildLine(d);
+    });
 });
