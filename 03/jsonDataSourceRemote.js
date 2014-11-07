@@ -40,7 +40,7 @@ d3.json('https://api.github.com/repos/bsullins/d3js-resources/contents/monthlySa
 
     var decodedData = JSON.parse(window.atob(data.content));
 
-    decodedData]]].contents.forEach(function (d) {
+    decodedData.contents.forEach(function (d) {
         console.log(d)
         showHeader(d);
         buildLine(d);
