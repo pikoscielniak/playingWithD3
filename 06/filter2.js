@@ -50,6 +50,9 @@ function updateLine(ds) {
     var yAxis = svg.selectAll('g.y-axis').call(yAxisGen);
 
     var viz = svg.selectAll('.path-' + ds.category)
+        .transition()
+        .duration(3000)
+        .ease('elastic')//elastic, circle, bounce, linear
         .attr({
             d: lineFun(ds.monthlySales)
         });
